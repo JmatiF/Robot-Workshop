@@ -7,6 +7,9 @@ public class RepairTask : MonoBehaviour
     private int currentInput;
     private bool isRepairing;
 
+    [SerializeField] private RepairProgress repairProgress;
+    [SerializeField] private WorkStation workStation;
+
     public void StartRepair(Player player)
     {
         if (isRepairing)
@@ -86,7 +89,7 @@ public class RepairTask : MonoBehaviour
 
             if (currentInput >= sequence.Length)
             {
-                CompleteRepair();
+                CompleteSequence();
             }
         }
         else
@@ -96,10 +99,12 @@ public class RepairTask : MonoBehaviour
         }
     }
 
-    private void CompleteRepair()
+    private void CompleteSequence()
     {
-        Debug.Log("REPAIR COMPLETED!");
+        Debug.Log("REPAIR SEQUENCE COMPLETED!");
 
         isRepairing = false;
+
+        repairProgress.StartProgress();
     }
 }
