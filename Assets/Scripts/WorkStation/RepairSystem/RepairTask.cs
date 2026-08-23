@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static System.Collections.Specialized.BitVector32;
 
 public class RepairTask : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class RepairTask : MonoBehaviour
     private int currentInput;
     private bool isRepairing;
 
-    public void StartRepair()
+    public void StartRepair(Player player)
     {
         if (isRepairing)
             return;
@@ -44,7 +43,9 @@ public class RepairTask : MonoBehaviour
 
         for (int i = 0; i < sequence.Length; i++)
         {
-            sequence[i] = availableKeys[Random.Range(0, availableKeys.Length)];
+            sequence[i] = availableKeys[
+                Random.Range(0, availableKeys.Length)
+            ];
         }
     }
 
@@ -81,7 +82,7 @@ public class RepairTask : MonoBehaviour
         {
             currentInput++;
 
-            Debug.Log($"Correct! {currentInput}/6");
+            Debug.Log($"Correct! {currentInput}/{sequence.Length}");
 
             if (currentInput >= sequence.Length)
             {
@@ -101,5 +102,4 @@ public class RepairTask : MonoBehaviour
 
         isRepairing = false;
     }
-
 }

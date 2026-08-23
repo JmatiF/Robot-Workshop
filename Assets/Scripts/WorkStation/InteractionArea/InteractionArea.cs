@@ -1,19 +1,34 @@
 using UnityEngine;
 
+public interface IInteractable
+{
+    void Interact(Player player);
+}
+
 public class InteractionArea : MonoBehaviour
 {
-    private Station station;
+    private Player player;
+    private IInteractable interactable;
 
     private void Awake()
     {
-        station = GetComponentInParent<Station>();
+        MonoBehaviour[] components = GetComponentsInParent<MonoBehaviour>();
+
+        foreach (MonoBehaviour component in components)
+        {
+            if (component is IInteractable)
+            {
+                interactable = component as IInteractable;
+                break;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Player player = other.GetComponent<Player>();
+            player = other.GetComponent<Player>();
             player.SetInteraction(this);
         }
     }
@@ -22,13 +37,19 @@ public class InteractionArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Player player = other.GetComponent<Player>();
             player.ClearInteraction(this);
+            player = null;
         }
     }
 
     public void Interact()
     {
-        station.Interact();
+        if (interactable == null)
+        {
+            Debug.LogError("InteractionArea: No IInteractable found in parent.");
+            return;
+        }
+
+        interactable.Interact(player);
     }
 }

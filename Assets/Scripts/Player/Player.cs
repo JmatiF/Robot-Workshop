@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D body;
     private Vector2 moveInput;
     private InteractionArea currentInteraction;
+    private Robot carriedRobot;
 
     private bool canMove = true;
 
@@ -93,4 +94,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TakeRobot(Robot robot)
+    {
+        carriedRobot = robot;
+
+        robot.transform.SetParent(transform);
+        robot.transform.localPosition = new Vector3(0f, 1f, 0f);
+
+        Debug.Log("Player recibió el robot.");
+    }
+
+    public Robot GetCarriedRobot()
+    {
+        return carriedRobot;
+    }
+
+    public Robot TakeCarriedRobot()
+    {
+        Robot robot = carriedRobot;
+        carriedRobot = null;
+
+        return robot;
+    }
 }
