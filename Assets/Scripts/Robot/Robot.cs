@@ -32,4 +32,26 @@ public class Robot : MonoBehaviour
     {
         return problems.Count > 0;
     }
+
+    public void GenerateRandomProblems()
+    {
+        problems.Clear();
+
+        int problemCount = Random.Range(1, 4);
+
+        Problem[] availableProblems = (Problem[])System.Enum.GetValues(typeof(Problem));
+
+        while (problems.Count < problemCount)
+        {
+            Problem randomProblem =
+                availableProblems[Random.Range(0, availableProblems.Length)];
+
+            if (!problems.Contains(randomProblem))
+            {
+                problems.Add(randomProblem);
+            }
+        }
+
+        Debug.Log($"Robot problems: {string.Join(", ", problems)}");
+    }
 }

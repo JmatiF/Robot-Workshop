@@ -12,6 +12,13 @@ public class DeliveryStation : MonoBehaviour, IInteractable
             return;
         }
 
+        if (robot.HasProblems())
+        {
+            Debug.Log("Robot still has unrepaired problems.");
+            player.TakeRobot(robot);
+            return;
+        }
+
         Debug.Log("Robot delivered successfully!");
 
         Destroy(robot.gameObject);

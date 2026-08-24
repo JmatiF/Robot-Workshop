@@ -34,6 +34,8 @@ public class RobotSpawner : MonoBehaviour, IInteractable
 
         currentRobot = robotObject.GetComponent<Robot>();
 
+        currentRobot.GenerateRandomProblems();
+
         Debug.Log("Robot nuevo esperando reparación.");
     }
 
