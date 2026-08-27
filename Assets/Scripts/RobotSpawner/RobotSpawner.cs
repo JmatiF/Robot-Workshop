@@ -42,13 +42,12 @@ public class RobotSpawner : MonoBehaviour, IInteractable
     public void Interact(Player player)
     {
         if (currentRobot == null)
-        {
             return;
-        }
 
-        Debug.Log("Robot retirado del Spawner.");
+        if (!player.TakeRobot(currentRobot))
+            return;
 
-        player.TakeRobot(currentRobot);
+        Debug.Log("Robot removed from Spawner.");
 
         currentRobot = null;
     }

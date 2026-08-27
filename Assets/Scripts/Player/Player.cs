@@ -94,14 +94,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeRobot(Robot robot)
+    public bool TakeRobot(Robot robot)
     {
+        if (carriedRobot != null)
+        {
+            Debug.Log("Player is already carrying a robot.");
+            return false;
+        }
+
         carriedRobot = robot;
 
         robot.transform.SetParent(transform);
         robot.transform.localPosition = new Vector3(0f, 1f, 0f);
 
-        Debug.Log("Player recibió el robot.");
+        Debug.Log("Player received the robot.");
+
+        return true;
     }
 
     public Robot GetCarriedRobot()
