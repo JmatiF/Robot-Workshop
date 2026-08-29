@@ -4,6 +4,7 @@ public class RobotSpawner : MonoBehaviour, IInteractable
 {
     [SerializeField] private float spawnInterval = 5f;
     [SerializeField] private GameObject robotPrefab;
+    [SerializeField] private GameManager gameManager;
 
     private float timer;
     private Robot currentRobot;
@@ -11,9 +12,10 @@ public class RobotSpawner : MonoBehaviour, IInteractable
     private void Update()
     {
         if (currentRobot != null)
-        {
             return;
-        }
+
+        if (!gameManager.CanSpawnRobot())
+            return;
 
         timer += Time.deltaTime;
 
@@ -34,7 +36,7 @@ public class RobotSpawner : MonoBehaviour, IInteractable
 
         currentRobot = robotObject.GetComponent<Robot>();
 
-        currentRobot.GenerateRandomProblems();
+        gameManager.RobotSpawned();
 
         Debug.Log("Robot nuevo esperando reparación.");
     }
