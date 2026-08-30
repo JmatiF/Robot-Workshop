@@ -4,6 +4,7 @@ public class RepairProgress : MonoBehaviour
 {
     [SerializeField] private float repairTime = 5f;
     [SerializeField] private WorkStation workStation;
+    [SerializeField] private ProgressBar progressBar;
 
     private float currentProgress;
     private bool isProcessing;
@@ -12,6 +13,9 @@ public class RepairProgress : MonoBehaviour
     {
         currentProgress = 0f;
         isProcessing = true;
+
+        progressBar.ResetProgress();
+        progressBar.Show();
 
         Debug.Log("Repair progress started.");
     }
@@ -23,9 +27,9 @@ public class RepairProgress : MonoBehaviour
 
         currentProgress += Time.deltaTime;
 
-        float percentage = currentProgress / repairTime * 100f;
+        float percentage = currentProgress / repairTime;
 
-        Debug.Log($"Repair progress: {percentage:F0}%");
+        progressBar.SetProgress(percentage);
 
         if (currentProgress >= repairTime)
         {
@@ -36,6 +40,9 @@ public class RepairProgress : MonoBehaviour
     private void CompleteProgress()
     {
         isProcessing = false;
+
+        progressBar.SetProgress(1f);
+        progressBar.Hide();
 
         Debug.Log("Repair progress completed.");
 
