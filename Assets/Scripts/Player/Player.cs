@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 4.5f;
+    [SerializeField] private PlayerVisual playerVisual;
 
     private Rigidbody2D body;
     private Vector2 moveInput;
@@ -107,6 +108,8 @@ public class Player : MonoBehaviour
         robot.transform.SetParent(transform);
         robot.transform.localPosition = new Vector3(0f, 1f, 0f);
 
+        playerVisual.SetCarryingRobot(true);
+
         Debug.Log("Player received the robot.");
 
         return true;
@@ -121,6 +124,8 @@ public class Player : MonoBehaviour
     {
         Robot robot = carriedRobot;
         carriedRobot = null;
+
+        playerVisual.SetCarryingRobot(false);
 
         return robot;
     }

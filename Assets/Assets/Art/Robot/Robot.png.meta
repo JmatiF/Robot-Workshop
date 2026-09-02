@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: edf069054fd33b64bb802e634c9104b7
+guid: 0ec41a503014d3a4285e6a54d0507386
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7258311665920351688
-    second: HealthBattery_0
+      213: 17426746270384133
+    second: Robot_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealthBattery_0
+      name: Robot_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 11
-        width: 110
-        height: 109
+        x: 21
+        y: 1
+        width: 89
+        height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8cd91440104bab460800000000000000
-      internalID: 7258311665920351688
+      spriteID: 500890d8889ed3000800000000000000
+      internalID: 17426746270384133
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HealthBattery_0: 7258311665920351688
+      Robot_0: 17426746270384133
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
