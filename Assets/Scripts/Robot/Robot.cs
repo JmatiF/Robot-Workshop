@@ -28,11 +28,6 @@ public class Robot : MonoBehaviour
         Debug.Log($"Problem repaired: {problem}");
     }
 
-    public bool HasProblems()
-    {
-        return problems.Count > 0;
-    }
-
     public void GenerateRandomProblems()
     {
         problems.Clear();
@@ -53,5 +48,15 @@ public class Robot : MonoBehaviour
         }
 
         Debug.Log($"Robot problems: {string.Join(", ", problems)}");
+    }
+
+    public bool HasProblems()
+    {
+        return problems.Count > 0;
+    }
+
+    public List<Problem> GetProblems()
+    {
+        return problems;
     }
 }

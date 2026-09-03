@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 4.5f;
     [SerializeField] private PlayerVisual playerVisual;
+    [SerializeField] private PlayerUI playerUI;
 
     private Rigidbody2D body;
     private Vector2 moveInput;
@@ -109,8 +110,7 @@ public class Player : MonoBehaviour
         robot.transform.localPosition = new Vector3(0f, 1f, 0f);
 
         playerVisual.SetCarryingRobot(true);
-
-        Debug.Log("Player received the robot.");
+        playerUI.ShowRobotInfo(robot);
 
         return true;
     }
@@ -126,6 +126,7 @@ public class Player : MonoBehaviour
         carriedRobot = null;
 
         playerVisual.SetCarryingRobot(false);
+        playerUI.HideRobotInfo();
 
         return robot;
     }
