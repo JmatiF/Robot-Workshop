@@ -7,7 +7,6 @@ public class SoftwareRepairTask : RepairTask
     private int currentInput;
     private bool isRepairing;
 
-
     [SerializeField] private WorkStation workStation;
 
     public override void StartRepair(Player player)
@@ -20,8 +19,6 @@ public class SoftwareRepairTask : RepairTask
 
         GenerateSequence();
         ShowSequence();
-
-        Debug.Log("Repair started!");
     }
 
     private void Update()
@@ -54,14 +51,7 @@ public class SoftwareRepairTask : RepairTask
 
     private void ShowSequence()
     {
-        string sequenceText = "Repair sequence: ";
-
-        foreach (Key key in sequence)
-        {
-            sequenceText += key + " ";
-        }
-
-        Debug.Log(sequenceText);
+        repairUI.ShowSequence(sequence);
     }
 
     private void CheckInput()
@@ -85,8 +75,6 @@ public class SoftwareRepairTask : RepairTask
         {
             currentInput++;
 
-            Debug.Log($"Correct! {currentInput}/{sequence.Length}");
-
             if (currentInput >= sequence.Length)
             {
                 CompleteSequence();
@@ -94,17 +82,15 @@ public class SoftwareRepairTask : RepairTask
         }
         else
         {
-            Debug.Log("Wrong input! Sequence reset.");
             currentInput = 0;
         }
     }
 
     private void CompleteSequence()
     {
-        Debug.Log("REPAIR SEQUENCE COMPLETED!");
-
         isRepairing = false;
 
+        repairUI.Hide();
         repairProgress.StartProgress();
     }
 }

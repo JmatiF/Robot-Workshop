@@ -15,8 +15,6 @@ public class BatteryRepairTask : RepairTask
 
         isRepairing = true;
         currentCharge = 0f;
-
-        Debug.Log("Battery repair started. Hold SPACE.");
     }
 
     private void Update()
@@ -28,10 +26,6 @@ public class BatteryRepairTask : RepairTask
         {
             currentCharge += Time.deltaTime;
 
-            float percentage = currentCharge / chargeTime * 100f;
-
-            Debug.Log($"Battery charge: {percentage:F0}%");
-
             if (currentCharge >= chargeTime)
             {
                 CompleteRepair();
@@ -39,7 +33,6 @@ public class BatteryRepairTask : RepairTask
         }
         else if (Keyboard.current.spaceKey.wasReleasedThisFrame)
         {
-            Debug.Log("Battery released too early. Charge reset.");
             currentCharge = 0f;
         }
     }
@@ -47,8 +40,6 @@ public class BatteryRepairTask : RepairTask
     private void CompleteRepair()
     {
         isRepairing = false;
-
-        Debug.Log("BATTERY REPAIR COMPLETED!");
 
         repairProgress.StartProgress();
     }

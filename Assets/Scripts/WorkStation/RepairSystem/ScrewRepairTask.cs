@@ -23,8 +23,6 @@ public class ScrewRepairTask : RepairTask
     private int currentInput;
     private bool isRepairing;
 
-
-
     public override void StartRepair(Player player)
     {
         if (isRepairing)
@@ -37,11 +35,7 @@ public class ScrewRepairTask : RepairTask
 
         sequence = isClockwise ? clockwise : counterClockwise;
 
-        Debug.Log(
-            isClockwise
-                ? "Screw: tighten clockwise."
-                : "Screw: loosen counter-clockwise."
-        );
+        ShowSequence();
     }
 
     private void Update()
@@ -50,6 +44,11 @@ public class ScrewRepairTask : RepairTask
             return;
 
         CheckInput();
+    }
+
+    private void ShowSequence()
+    {
+        repairUI.ShowSequence(sequence);
     }
 
     private void CheckInput()
@@ -73,8 +72,6 @@ public class ScrewRepairTask : RepairTask
         {
             currentInput++;
 
-            Debug.Log($"Correct! {currentInput}/{sequence.Length}");
-
             if (currentInput >= sequence.Length)
             {
                 CompleteRepair();
@@ -82,7 +79,6 @@ public class ScrewRepairTask : RepairTask
         }
         else
         {
-            Debug.Log("Wrong direction! Screw sequence reset.");
             currentInput = 0;
         }
     }
@@ -91,8 +87,7 @@ public class ScrewRepairTask : RepairTask
     {
         isRepairing = false;
 
-        Debug.Log("SCREW REPAIR COMPLETED!");
-
+        repairUI.Hide();
         repairProgress.StartProgress();
     }
 }

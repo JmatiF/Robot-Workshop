@@ -27,8 +27,6 @@ public class WireRepairTask : RepairTask
 
         GenerateBrokenWires();
         ShowBrokenWires();
-
-        Debug.Log("Enter the broken wire sequence.");
     }
 
     private void Update()
@@ -64,14 +62,14 @@ public class WireRepairTask : RepairTask
 
     private void ShowBrokenWires()
     {
-        string result = "Broken wires: ";
+        string result = "";
 
         foreach (WireColor wire in brokenWires)
         {
-            result += wire + " ";
+            result += GetWireLetter(wire) + " ";
         }
 
-        Debug.Log(result);
+        repairUI.ShowText(result);
     }
 
     private void CheckInput()
@@ -100,8 +98,6 @@ public class WireRepairTask : RepairTask
     private void AddInput(string input)
     {
         currentInput += input;
-
-        Debug.Log($"Input: {currentInput}");
     }
 
     private void SubmitInput()
@@ -119,7 +115,6 @@ public class WireRepairTask : RepairTask
         }
         else
         {
-            Debug.Log("Wrong wire sequence. Try again.");
             currentInput = "";
         }
     }
@@ -149,8 +144,7 @@ public class WireRepairTask : RepairTask
     {
         isRepairing = false;
 
-        Debug.Log("WIRE REPAIR COMPLETED!");
-
+        repairUI.Hide();
         repairProgress.StartProgress();
     }
 }
