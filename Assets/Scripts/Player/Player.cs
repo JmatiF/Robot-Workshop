@@ -123,7 +123,13 @@ public class Player : MonoBehaviour
     public Robot TakeCarriedRobot()
     {
         Robot robot = carriedRobot;
+
+        if (robot == null)
+            return null;
+
         carriedRobot = null;
+
+        robot.transform.SetParent(null);
 
         playerVisual.SetCarryingRobot(false);
         playerUI.HideRobotInfo();

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DeliveryStation : MonoBehaviour, IInteractable
 {
+    [SerializeField] private GameManager gameManager;
+
     public void Interact(Player player)
     {
         Robot robot = player.TakeCarriedRobot();
@@ -19,7 +21,7 @@ public class DeliveryStation : MonoBehaviour, IInteractable
             return;
         }
 
-        Debug.Log("Robot delivered successfully!");
+        gameManager.RobotCompleted();
 
         Destroy(robot.gameObject);
     }
