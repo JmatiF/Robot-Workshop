@@ -48,7 +48,7 @@ public class ScrewRepairTask : RepairTask
 
     private void ShowSequence()
     {
-        repairUI.ShowSequence(sequence);
+        repairUI.ShowSequence(sequence, currentInput);
     }
 
     private void CheckInput()
@@ -75,6 +75,10 @@ public class ScrewRepairTask : RepairTask
             if (currentInput >= sequence.Length)
             {
                 CompleteRepair();
+            }
+            else
+            {
+                ShowSequence();
             }
         }
         else

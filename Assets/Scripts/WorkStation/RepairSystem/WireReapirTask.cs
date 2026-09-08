@@ -69,6 +69,8 @@ public class WireRepairTask : RepairTask
             result += GetWireLetter(wire) + " ";
         }
 
+        result += "\n" + currentInput;
+
         repairUI.ShowText(result);
     }
 
@@ -98,6 +100,7 @@ public class WireRepairTask : RepairTask
     private void AddInput(string input)
     {
         currentInput += input;
+        ShowBrokenWires();
     }
 
     private void SubmitInput()
@@ -116,6 +119,7 @@ public class WireRepairTask : RepairTask
         else
         {
             currentInput = "";
+            ShowBrokenWires();
         }
     }
 

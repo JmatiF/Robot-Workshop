@@ -51,7 +51,7 @@ public class SoftwareRepairTask : RepairTask
 
     private void ShowSequence()
     {
-        repairUI.ShowSequence(sequence);
+        repairUI.ShowSequence(sequence, currentInput);
     }
 
     private void CheckInput()
@@ -78,6 +78,10 @@ public class SoftwareRepairTask : RepairTask
             if (currentInput >= sequence.Length)
             {
                 CompleteSequence();
+            }
+            else
+            {
+                ShowSequence();
             }
         }
         else

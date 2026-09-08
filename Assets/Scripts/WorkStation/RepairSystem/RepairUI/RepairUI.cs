@@ -11,15 +11,18 @@ public class RepairUI : MonoBehaviour
         repairText.gameObject.SetActive(false);
     }
 
-    public void ShowSequence(Key[] sequence)
+    public void ShowSequence(Key[] sequence, int currentInput = 0)
     {
         repairText.gameObject.SetActive(true);
 
         string text = "";
 
-        foreach (Key key in sequence)
+        for (int i = 0; i < sequence.Length; i++)
         {
-            text += key + " ";
+            if (i == currentInput)
+                text += $"<color=yellow>{sequence[i]}</color> ";
+            else
+                text += $"{sequence[i]} ";
         }
 
         repairText.text = text;

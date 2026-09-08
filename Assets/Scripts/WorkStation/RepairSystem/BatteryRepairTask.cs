@@ -15,6 +15,8 @@ public class BatteryRepairTask : RepairTask
 
         isRepairing = true;
         currentCharge = 0f;
+
+        repairUI.ShowText("HOLD SPACE");
     }
 
     private void Update()
@@ -41,6 +43,7 @@ public class BatteryRepairTask : RepairTask
     {
         isRepairing = false;
 
+        repairUI.Hide();
         repairProgress.StartProgress();
     }
 }
