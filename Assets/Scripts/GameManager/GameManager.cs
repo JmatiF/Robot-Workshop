@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float gameTime = 180f;
     [SerializeField] private TMP_Text robotsText;
     [SerializeField] private TMP_Text timerText;
+    [SerializeField] private GameEndUI gameEndUI;
 
     private int completedRobots;
     private int spawnedRobots;
@@ -74,14 +75,12 @@ public class GameManager : MonoBehaviour
     private void WinGame()
     {
         gameFinished = true;
-
-        Debug.Log("YOU WIN!");
+        gameEndUI.ShowWin();
     }
 
     private void LoseGame()
     {
         gameFinished = true;
-
-        Debug.Log("GAME OVER!");
+        gameEndUI.ShowLose();
     }
 }
